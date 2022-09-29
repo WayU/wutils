@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "wutils",
+  "version": "${version}",
+
+  "name": "Wiphire's utilities",
+  "description": "This is a mod for various utilities",
+  "authors": [
+    "Wiphire"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+
+  "license": "MIT",
+  "icon": "assets/modid/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.wiphire.wUtils.wUtils"
+    ]
+  },
+  "mixins": [
+    "wUtils.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14.9",
+    "fabric-api": "*",
+    "minecraft": "~1.19",
+    "java": ">=17"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
