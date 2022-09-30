@@ -20,6 +20,9 @@
   "entrypoints": {
     "main": [
       "net.wiphire.wUtils.wUtils"
+    ],
+    "client": [
+      "net.wiphire.wUtils.wUtilsClient"
     ]
   },
   "mixins": [

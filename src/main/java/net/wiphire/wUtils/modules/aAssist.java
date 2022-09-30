@@ -1,7 +1,6 @@
 package net.wiphire.wUtils.modules;
 
 import net.wiphire.wUtils.wUtils;
-import net.minecraft.client.option.KeyBinding;
 
 public class aAssist {
     public static boolean isEnabled = false;
