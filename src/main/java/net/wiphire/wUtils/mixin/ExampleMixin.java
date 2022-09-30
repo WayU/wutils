@@ -1,7 +1,7 @@
 package net.wiphire.wUtils.mixin;
 
 import net.minecraft.client.gui.screen.TitleScreen;
-import net.wiphire.wUtils.wutils;
+import net.wiphire.wUtils.wUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -12,6 +12,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ExampleMixin {
 	@Inject(at = @At("HEAD"), method = "init()V")
 	private void init(CallbackInfo info) {
-		wutils.LOGGER.info("This line is printed by an example mod mixin!");
+		wUtils.LOGGER.info("This line is printed by an example mod mixin!");
 	}
 }

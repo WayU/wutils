@@ -1,6 +1,6 @@
 package net.wiphire.wUtils.modules;
 
-import net.wiphire.wUtils.wutils;
+import net.wiphire.wUtils.wUtils;
 import net.minecraft.client.option.KeyBinding;
 
 public class aAssist {
@@ -13,12 +13,12 @@ public class aAssist {
     public static void toggleEnableState(){
         if (isEnabled){
             isEnabled = false;
-            wutils.LOGGER.info("assist set false");
+            wUtils.LOGGER.info("assist set false");
         }
         else
         {
             isEnabled = true;
-            wutils.LOGGER.info("assist set true");
+            wUtils.LOGGER.info("assist set true");
         }
     }
 }
