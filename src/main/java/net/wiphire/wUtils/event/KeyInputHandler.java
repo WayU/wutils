@@ -7,6 +7,8 @@ import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.Text;
 import net.wiphire.wUtils.modules.aAssist;
 import org.lwjgl.glfw.GLFW;
+import static net.wiphire.wUtils.wUtilsClient.mc;
+import java.lang.String;
 
 public class KeyInputHandler {
     public static final String KEY_CATEGORY_TUTORIAL = "key.category.tutorial";
@@ -19,7 +21,6 @@ public class KeyInputHandler {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if(funcKey.wasPressed()) {
                 aAssist.toggleEnableState();
-                client.player.sendMessage(Text.literal("Yeaah"));
             }
         });
     }
@@ -33,4 +34,5 @@ public class KeyInputHandler {
                 ));
         registerKeyInputs();
     }
+
 }
