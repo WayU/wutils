@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "wutils",
+  "id": "wi_zoom",
   "version": "${version}",
 
   "name": "Wiphire's utilities",
