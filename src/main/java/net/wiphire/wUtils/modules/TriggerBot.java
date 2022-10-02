@@ -66,7 +66,7 @@ public class TriggerBot {
 
         Entity target = ((EntityHitResult)mc.crosshairTarget).getEntity();
         if (!hitMobs) {
-            if (target.getEntityName() == "K4lastaja" || target.getEntityName() == "Wiphire" || target != mc.player)
+            if (target.getEntityName() == "K4lastaja" || target.getEntityName() == "Wiphire" || !(target instanceof PlayerEntity))
                 return;
         }
 
