@@ -66,12 +66,12 @@ public class TriggerBot {
 
         Entity target = ((EntityHitResult)mc.crosshairTarget).getEntity();
         if (!hitMobs) {
-            if (target.getEntityName() == "K4lastaja" || target.getEntityName() == "Wiphire" || !(target instanceof PlayerEntity))
+            if (!(target instanceof PlayerEntity))
                 return;
         }
+        if (target.getEntityName() == "K4lastaja" || target.getEntityName() == "Wiphire") return;
 
-
-        mc.interactionManager.attackEntity(player, target);
+            mc.interactionManager.attackEntity(player, target);
         player.swingHand(Hand.MAIN_HAND);
         timer = 15;
     }
