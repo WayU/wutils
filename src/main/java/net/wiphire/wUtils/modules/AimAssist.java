@@ -2,8 +2,10 @@ package net.wiphire.wUtils.modules;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.MathHelper;
 import net.wiphire.wUtils.utils.Vec3;
+import net.wiphire.wUtils.wUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +16,8 @@ public class AimAssist {
 
     private static final List<Entity> targetList = new ArrayList<>();
 
+    private static Entity target;
+
     static boolean shouldAim = false;
 
     public static void toggleState() {
@@ -23,18 +27,38 @@ public class AimAssist {
     }
 
 
+    public static Entity get() {
+        targetList.clear();
+        getList(targetList, 1);
+        if (!targetList.isEmpty()) {
+            return targetList.get(0);
+        }
+
+        return null;
+    }
+
+    public static void getList(List<Entity> targetList, int maxCount) {
+        targetList.clear();
+
+        for (Entity entity : mc.world.getEntities()) {
+            if (entity != null && ((entity instanceof PlayerEntity) || entity != mc.player) || (mc.player.distanceTo(entity) < 4.3)) {wUtils.LOGGER.info("nah");targetList.add(entity);}
+        }
+
+
+
+        targetList.sort((e1, e2) -> sortHealth(e1, e2));
+        targetList.removeIf(entity -> targetList.indexOf(entity) > maxCount -1);
+    }
+
 
     public static void register() {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
 
 
             if (shouldAim) {
-                for (Entity entity : mc.world.getEntities()) {
-                    if (entity == null || !entity.isInRange(mc.player, 4.3)) return;
-                    targetList.add(entity);
-                }
+                target = get();
                 targetList.sort((e1, e2) -> sortHealth(e1, e2));
-                aim(targetList.get(0), 20.0);
+                aim(target, 20.0);
             }
             else return;
 
