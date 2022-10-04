@@ -21,9 +21,11 @@ public class KeyInputHandler {
     public static final String KEY_CATEGORY_WUTILS = "key.category.wutils";
     public static final String KEY_CALL_FUNC = "key.wutils.onr";
     public static final String KEY_CALL_FUNC2 = "key.wutils.ono";
+    public static final String KEY_CALL_FUNC3 = "key.wutils.ong";
 
     public static KeyBinding funcKey;
     public static KeyBinding funcKey2;
+    public static KeyBinding funcKey3;
 
     public static void registerKeyInputs() {
 
@@ -37,6 +39,12 @@ public class KeyInputHandler {
             //    wUtils.LOGGER.info("key2 worked atleast");
                 AimAssist.toggleState();
 
+            }
+
+            if (funcKey3.wasPressed()) {
+                //    wUtils.LOGGER.info("key3 worked atleast");
+                AimAssist.toggleMob();
+                TriggerBot.toggleKeyMH();
             }
         });
     }
@@ -53,6 +61,13 @@ public class KeyInputHandler {
                 KEY_CALL_FUNC2,
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_O,
+                KEY_CATEGORY_WUTILS
+        ));
+
+        funcKey3= KeyBindingHelper.registerKeyBinding(new KeyBinding(
+                KEY_CALL_FUNC3,
+                InputUtil.Type.KEYSYM,
+                GLFW.GLFW_KEY_G,
                 KEY_CATEGORY_WUTILS
         ));
         registerKeyInputs();

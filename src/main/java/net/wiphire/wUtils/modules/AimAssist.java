@@ -19,11 +19,17 @@ public class AimAssist {
     private static Entity target;
 
     static boolean shouldAim = false;
+    static boolean hitMobs = false;
 
     public static void toggleState() {
         if (shouldAim) shouldAim = false;
         else shouldAim = true;
         targetList.clear();
+    }
+
+    public static void toggleMob() {
+        if (hitMobs) shouldAim = false;
+        else hitMobs = true;
     }
 
 
@@ -41,9 +47,15 @@ public class AimAssist {
         targetList.clear();
 
         for (Entity entity : mc.world.getEntities()) {
-            if (entity != null && ((entity instanceof PlayerEntity) || entity != mc.player) || (mc.player.distanceTo(entity) < 4.3)) {wUtils.LOGGER.info("nah");targetList.add(entity);}
-        }
+            if (entity != null && entity != mc.player && mc.player.distanceTo(entity) <= 3.8) {
+                if (!hitMobs) {
+                    if(entity instanceof PlayerEntity) targetList.add(entity);
+                }
+                else if (hitMobs) targetList.add(entity);
 
+            }
+
+        }
 
 
         targetList.sort((e1, e2) -> sortHealth(e1, e2));
@@ -78,9 +90,8 @@ public class AimAssist {
 
 
     private static void aim(Entity target, double delta) {
-        if ((!target.isInRange(mc.player, 4.3))) {targetList.remove(targetList.get(0)); return; }
         Vec3 vec3d1 = new Vec3();
-
+        if (target == null) return;
         vec3d1.set(target, delta);
 
         vec3d1.add(0, target.getEyeHeight(target.getPose()) / 2, 0);

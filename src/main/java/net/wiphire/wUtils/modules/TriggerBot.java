@@ -18,8 +18,8 @@ import static net.wiphire.wUtils.wUtilsClient.mc;
 
 public class TriggerBot {
 
-    public static boolean isOn;
-    public static boolean hitMobs;
+    public static boolean isOn = false;
+    public static boolean hitMobs = false;
     static int timer = 1;
 
     public static void toggleKey() {
@@ -66,8 +66,7 @@ public class TriggerBot {
 
         Entity target = ((EntityHitResult)mc.crosshairTarget).getEntity();
         if (!hitMobs) {
-            if (!(target instanceof PlayerEntity))
-                return;
+            if (!(target instanceof PlayerEntity)) return;
         }
         if (target.getEntityName() == "K4lastaja" || target.getEntityName() == "Wiphire") return;
 
