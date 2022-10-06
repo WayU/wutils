@@ -3,10 +3,10 @@
   "id": "wi_zoom",
   "version": "${version}",
 
-  "name": "Wiphire's utilities",
+  "name": "WI Zoom",
   "description": "This is a mod for various utilities",
   "authors": [
-    "Wiphire"
+    "object Object"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",

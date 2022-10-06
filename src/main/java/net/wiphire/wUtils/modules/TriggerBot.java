@@ -14,6 +14,7 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.wiphire.wUtils.event.UpdateListener;
 import net.wiphire.wUtils.wUtils;
 
+
 import static net.wiphire.wUtils.wUtilsClient.mc;
 
 public class TriggerBot {
@@ -68,7 +69,7 @@ public class TriggerBot {
         if (!hitMobs) {
             if (!(target instanceof PlayerEntity)) return;
         }
-        if (target.getEntityName() == "K4lastaja" || target.getEntityName() == "Wiphire") return;
+        if (target.getEntityName() == "K4lastaja" || target.getEntityName() == "Wiphire" || target.isInvisible()) return;
 
             mc.interactionManager.attackEntity(player, target);
         player.swingHand(Hand.MAIN_HAND);

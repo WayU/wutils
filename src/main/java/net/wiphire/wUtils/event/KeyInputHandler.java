@@ -19,8 +19,8 @@ import java.lang.String;
 
 public class KeyInputHandler {
     public static final String KEY_CATEGORY_WUTILS = "key.category.wutils";
-    public static final String KEY_CALL_FUNC = "key.wutils.onr";
-    public static final String KEY_CALL_FUNC2 = "key.wutils.ono";
+    public static final String KEY_CALL_FUNC = "key.wutils.aa";
+    public static final String KEY_CALL_FUNC2 = "key.wutils.tb";
     public static final String KEY_CALL_FUNC3 = "key.wutils.ong";
 
     public static KeyBinding funcKey;
@@ -53,14 +53,14 @@ public class KeyInputHandler {
         funcKey= KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 KEY_CALL_FUNC,
                 InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_R,
+                GLFW.GLFW_KEY_O,
                 KEY_CATEGORY_WUTILS
         ));
 
         funcKey2= KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 KEY_CALL_FUNC2,
                 InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_O,
+                GLFW.GLFW_KEY_R,
                 KEY_CATEGORY_WUTILS
         ));
 

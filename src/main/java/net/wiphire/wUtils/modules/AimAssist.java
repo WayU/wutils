@@ -3,9 +3,15 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.math.MathHelper;
 import net.wiphire.wUtils.utils.Vec3;
+import net.wiphire.wUtils.utils.IVec3d;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.RaycastContext;
+import net.minecraft.util.hit.HitResult;
 import net.wiphire.wUtils.wUtils;
+import net.minecraft.entity.player.PlayerInventory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +26,7 @@ public class AimAssist {
 
     static boolean shouldAim = false;
     static boolean hitMobs = false;
+    private static final Vec3d horizontalVelocity = new Vec3d(0, 0, 0);
 
     public static void toggleState() {
         if (shouldAim) shouldAim = false;
@@ -34,6 +41,7 @@ public class AimAssist {
 
 
     public static Entity get() {
+        if (mc.player == null) return null;
         targetList.clear();
         getList(targetList, 1);
         if (!targetList.isEmpty()) {
@@ -44,10 +52,11 @@ public class AimAssist {
     }
 
     public static void getList(List<Entity> targetList, int maxCount) {
+        if (mc.player == null) return;
         targetList.clear();
 
         for (Entity entity : mc.world.getEntities()) {
-            if (entity != null && entity != mc.player && mc.player.distanceTo(entity) <= 3.8) {
+            if (entity != null && entity != mc.player && mc.player.distanceTo(entity ) <= 3.8 && entity.getEntityName() != "K4lastaja" && entity.getEntityName() != "Wiphire" && !entity.isInvisible() && entity.isAlive() && entity.isAttackable()) {
                 if (!hitMobs) {
                     if(entity instanceof PlayerEntity) targetList.add(entity);
                 }
@@ -64,13 +73,14 @@ public class AimAssist {
 
 
     public static void register() {
+        AimAssist aim = new AimAssist();
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
 
 
             if (shouldAim) {
                 target = get();
                 targetList.sort((e1, e2) -> sortHealth(e1, e2));
-                aim(target, 20.0);
+                aim.aim(target, 0.7400142550468445);
             }
             else return;
 
@@ -89,12 +99,14 @@ public class AimAssist {
     }
 
 
-    private static void aim(Entity target, double delta) {
-        Vec3 vec3d1 = new Vec3();
+
+    Vec3 vec3d1 = new Vec3();
+
+    private void aim(Entity target, double delta) {
         if (target == null) return;
         vec3d1.set(target, delta);
 
-        vec3d1.add(0, target.getEyeHeight(target.getPose()) / 2, 0);
+        vec3d1.add(0, target.getEyeHeight(target.getPose()) / 1.3, 0);
 
 
         double deltaX = vec3d1.x - mc.player.getX();
