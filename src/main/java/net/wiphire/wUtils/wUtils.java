@@ -3,6 +3,7 @@ package net.wiphire.wUtils;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import net.wiphire.wUtils.config.ModConfigs;
 
 public class wUtils implements ModInitializer {
 	// This logger is used to write text to the console and the log file.
@@ -15,5 +16,6 @@ public class wUtils implements ModInitializer {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
+		ModConfigs.registerConfigs();
 	}
 }

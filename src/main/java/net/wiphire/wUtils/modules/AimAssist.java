@@ -27,10 +27,12 @@ public class AimAssist {
     static boolean shouldAim = false;
     static boolean hitMobs = false;
     private static final Vec3d horizontalVelocity = new Vec3d(0, 0, 0);
+    int timer = 100;
+
 
     public static void toggleState() {
         if (shouldAim) shouldAim = false;
-        else shouldAim = true;
+        else {shouldAim = true;}
         targetList.clear();
     }
 
@@ -56,7 +58,7 @@ public class AimAssist {
         targetList.clear();
 
         for (Entity entity : mc.world.getEntities()) {
-            if (entity != null && entity != mc.player && mc.player.distanceTo(entity ) <= 3.8 && entity.getEntityName() != "K4lastaja" && entity.getEntityName() != "Wiphire" && !entity.isInvisible() && entity.isAlive() && entity.isAttackable()) {
+            if (entity != null && entity != mc.player && mc.player.distanceTo(entity ) <= 3.8 && entity.getEntityName() != "K4lastaja" && entity.getEntityName() != "Wiphire" && !entity.isInvisible() && entity.isAlive() && entity.isAttackable() && !(mc.player.isTeammate(entity))) {
                 if (!hitMobs) {
                     if(entity instanceof PlayerEntity) targetList.add(entity);
                 }
@@ -74,18 +76,17 @@ public class AimAssist {
 
     public static void register() {
         AimAssist aim = new AimAssist();
-        ClientTickEvents.END_CLIENT_TICK.register(client -> {
-
+        ClientTickEvents.END_CLIENT_TICK.register(client ->  {
 
             if (shouldAim) {
                 target = get();
-                targetList.sort((e1, e2) -> sortHealth(e1, e2));
-                aim.aim(target, 0.7400142550468445);
+                aim.aim(target, 0.74);
             }
             else return;
 
         });
     }
+
 
     private static int sortHealth(Entity e1, Entity e2) {
         boolean e1l = e1 instanceof LivingEntity;
@@ -103,6 +104,7 @@ public class AimAssist {
     Vec3 vec3d1 = new Vec3();
 
     private void aim(Entity target, double delta) {
+
         if (target == null) return;
         vec3d1.set(target, delta);
 
@@ -120,7 +122,7 @@ public class AimAssist {
 
 
             deltaAngle = MathHelper.wrapDegrees(angle - mc.player.getYaw());
-            toRotate = 20 * (deltaAngle >= 0 ? 1 : -1) * delta;
+            toRotate = 7.5 * (deltaAngle >= 0 ? 1 : -1) * delta;
             if ((toRotate >= 0 && toRotate > deltaAngle) || (toRotate < 0 && toRotate < deltaAngle)) toRotate = deltaAngle;
             mc.player.setYaw(mc.player.getYaw() + (float) toRotate);
 
@@ -131,9 +133,10 @@ public class AimAssist {
 
 
             deltaAngle = MathHelper.wrapDegrees(angle - mc.player.getPitch());
-            toRotate = 20 * (deltaAngle >= 0 ? 1 : -1) * delta;
+            toRotate = 7.5 * (deltaAngle >= 0 ? 1 : -1) * delta;
             if ((toRotate >= 0 && toRotate > deltaAngle) || (toRotate < 0 && toRotate < deltaAngle)) toRotate = deltaAngle;
             mc.player.setPitch(mc.player.getPitch() + (float) toRotate);
+
 
     }
 }

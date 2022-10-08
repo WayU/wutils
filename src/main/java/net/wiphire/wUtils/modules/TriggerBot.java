@@ -69,7 +69,7 @@ public class TriggerBot {
         if (!hitMobs) {
             if (!(target instanceof PlayerEntity)) return;
         }
-        if (target.getEntityName() == "K4lastaja" || target.getEntityName() == "Wiphire" || target.isInvisible()) return;
+        if (target.getEntityName() == "K4lastaja" || target.getEntityName() == "Wiphire" || target.isInvisible() || mc.player.isTeammate(target)) return;
 
             mc.interactionManager.attackEntity(player, target);
         player.swingHand(Hand.MAIN_HAND);

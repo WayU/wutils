@@ -19,5 +19,6 @@ public class wUtilsClient implements ClientModInitializer {
         TriggerBot.register();
         AimAssist.register();
         KeyInputHandler.register();
+
     }
 }
