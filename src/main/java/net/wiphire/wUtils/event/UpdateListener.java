@@ -2,9 +2,6 @@ package net.wiphire.wUtils.event;
 
 import java.util.ArrayList;
 
-import net.wiphire.wUtils.event.Event;
-import net.wiphire.wUtils.event.Listener;
-
 public interface UpdateListener extends Listener
 {
     public void onUpdate();

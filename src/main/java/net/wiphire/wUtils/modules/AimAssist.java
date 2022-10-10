@@ -3,15 +3,10 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.math.MathHelper;
 import net.wiphire.wUtils.utils.Vec3;
-import net.wiphire.wUtils.utils.IVec3d;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.RaycastContext;
-import net.minecraft.util.hit.HitResult;
 import net.wiphire.wUtils.wUtils;
-import net.minecraft.entity.player.PlayerInventory;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +20,9 @@ public class AimAssist {
     private static Entity target;
 
     static boolean shouldAim = false;
+    static boolean shouldAimInvis = false;
     static boolean hitMobs = false;
-    private static final Vec3d horizontalVelocity = new Vec3d(0, 0, 0);
-    int timer = 100;
+
 
 
     public static void toggleState() {
@@ -37,8 +32,13 @@ public class AimAssist {
     }
 
     public static void toggleMob() {
-        if (hitMobs) shouldAim = false;
+        if (hitMobs) hitMobs = false;
         else hitMobs = true;
+    }
+    public static void toggleInvis() {
+        wUtils.LOGGER.info("e");
+        if (shouldAimInvis) shouldAimInvis = false;
+        else shouldAimInvis = true;
     }
 
 
@@ -58,12 +58,10 @@ public class AimAssist {
         targetList.clear();
 
         for (Entity entity : mc.world.getEntities()) {
-            if (entity != null && entity != mc.player && mc.player.distanceTo(entity ) <= 3.8 && entity.getEntityName() != "K4lastaja" && entity.getEntityName() != "Wiphire" && !entity.isInvisible() && entity.isAlive() && entity.isAttackable() && !(mc.player.isTeammate(entity))) {
-                if (!hitMobs) {
-                    if(entity instanceof PlayerEntity) targetList.add(entity);
-                }
-                else if (hitMobs) targetList.add(entity);
-
+            if (entity != null && entity != mc.player && mc.player.distanceTo(entity ) <= 3.8 && entity.getEntityName() != "K4lastaja" && entity.getEntityName() != "Wiphire" && entity.isAlive() && entity.isAttackable() && !(mc.player.isTeammate(entity))) {
+                if (!shouldAimInvis && entity.isInvisible()) return;
+                if (!hitMobs && entity instanceof PlayerEntity) targetList.add(entity);
+                    else if (hitMobs) targetList.add(entity);
             }
 
         }
@@ -122,7 +120,7 @@ public class AimAssist {
 
 
             deltaAngle = MathHelper.wrapDegrees(angle - mc.player.getYaw());
-            toRotate = 7.5 * (deltaAngle >= 0 ? 1 : -1) * delta;
+            toRotate = 10 * (deltaAngle >= 0 ? 1 : -1) * delta;
             if ((toRotate >= 0 && toRotate > deltaAngle) || (toRotate < 0 && toRotate < deltaAngle)) toRotate = deltaAngle;
             mc.player.setYaw(mc.player.getYaw() + (float) toRotate);
 
@@ -133,7 +131,7 @@ public class AimAssist {
 
 
             deltaAngle = MathHelper.wrapDegrees(angle - mc.player.getPitch());
-            toRotate = 7.5 * (deltaAngle >= 0 ? 1 : -1) * delta;
+            toRotate = 10 * (deltaAngle >= 0 ? 1 : -1) * delta;
             if ((toRotate >= 0 && toRotate > deltaAngle) || (toRotate < 0 && toRotate < deltaAngle)) toRotate = deltaAngle;
             mc.player.setPitch(mc.player.getPitch() + (float) toRotate);
 

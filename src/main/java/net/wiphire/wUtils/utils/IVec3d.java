@@ -1,6 +1,5 @@
 package net.wiphire.wUtils.utils;
 
-import net.wiphire.wUtils.utils.Vec3;
 import net.minecraft.util.math.Vec3i;
 
 public interface IVec3d {

@@ -1,18 +1,14 @@
 package net.wiphire.wUtils.modules;
 
-import java.util.stream.Stream;
 
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.decoration.EndCrystalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.EntityHitResult;
-import net.wiphire.wUtils.event.UpdateListener;
-import net.wiphire.wUtils.wUtils;
+
 
 
 import static net.wiphire.wUtils.wUtilsClient.mc;
