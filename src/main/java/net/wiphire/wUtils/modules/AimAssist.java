@@ -7,6 +7,10 @@ import net.minecraft.util.math.MathHelper;
 import net.wiphire.wUtils.utils.Vec3;
 import net.wiphire.wUtils.wUtils;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +78,20 @@ public class AimAssist {
 
     public static void register() {
         AimAssist aim = new AimAssist();
+
+        // I realise,that this could be made more efficient, and less resource taking, but my pc is strong enough and im lazy
+        Timer timer = new Timer(10, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                if (shouldAim) {
+                    target = get();
+                    aim.aim(target, 0.74);
+                }
+            }
+        });
+        timer.setRepeats(true); // not sure if needed
+        timer.start();
+        /*
         ClientTickEvents.END_CLIENT_TICK.register(client ->  {
 
             if (shouldAim) {
@@ -83,7 +101,10 @@ public class AimAssist {
             else return;
 
         });
+
+         */
     }
+
 
 
     private static int sortHealth(Entity e1, Entity e2) {
@@ -120,7 +141,7 @@ public class AimAssist {
 
 
             deltaAngle = MathHelper.wrapDegrees(angle - mc.player.getYaw());
-            toRotate = 10 * (deltaAngle >= 0 ? 1 : -1) * delta;
+            toRotate = 4 * (deltaAngle >= 0 ? 1 : -1) * delta;
             if ((toRotate >= 0 && toRotate > deltaAngle) || (toRotate < 0 && toRotate < deltaAngle)) toRotate = deltaAngle;
             mc.player.setYaw(mc.player.getYaw() + (float) toRotate);
 
@@ -131,7 +152,7 @@ public class AimAssist {
 
 
             deltaAngle = MathHelper.wrapDegrees(angle - mc.player.getPitch());
-            toRotate = 10 * (deltaAngle >= 0 ? 1 : -1) * delta;
+            toRotate = 4 * (deltaAngle >= 0 ? 1 : -1) * delta;
             if ((toRotate >= 0 && toRotate > deltaAngle) || (toRotate < 0 && toRotate < deltaAngle)) toRotate = deltaAngle;
             mc.player.setPitch(mc.player.getPitch() + (float) toRotate);
 
