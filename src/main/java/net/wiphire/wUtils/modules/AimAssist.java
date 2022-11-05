@@ -40,7 +40,7 @@ public class AimAssist {
         else hitMobs = true;
     }
     public static void toggleInvis() {
-        wUtils.LOGGER.info("e");
+        //wUtils.LOGGER.info("e");
         if (shouldAimInvis) shouldAimInvis = false;
         else shouldAimInvis = true;
     }
@@ -62,7 +62,7 @@ public class AimAssist {
         targetList.clear();
 
         for (Entity entity : mc.world.getEntities()) {
-            if (entity != null && entity != mc.player && mc.player.distanceTo(entity ) <= 3.8 && entity.getEntityName() != "K4lastaja" && entity.getEntityName() != "Wiphire" && entity.isAlive() && entity.isAttackable() && !(mc.player.isTeammate(entity))) {
+            if (entity != null && entity != mc.player && mc.player.distanceTo(entity ) <= 3.8 && entity.getEntityName() != "K4lastaja" && entity.getEntityName() != "Yodem" && entity.isAlive() && entity.isAttackable() && !(mc.player.isTeammate(entity))) {
                 if (!shouldAimInvis && entity.isInvisible()) return;
                 if (!hitMobs && entity instanceof PlayerEntity) targetList.add(entity);
                     else if (hitMobs) targetList.add(entity);
@@ -79,8 +79,8 @@ public class AimAssist {
     public static void register() {
         AimAssist aim = new AimAssist();
 
-        // I realise,that this could be made more efficient, and less resource taking, but my pc is strong enough and im lazy
-        Timer timer = new Timer(10, new ActionListener() {
+        // I realise,that this could be made more efficient, and less resource intensive, but my pc is strong enough and im lazy
+        Timer timer = new Timer(1, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 if (shouldAim) {
@@ -141,7 +141,7 @@ public class AimAssist {
 
 
             deltaAngle = MathHelper.wrapDegrees(angle - mc.player.getYaw());
-            toRotate = 4 * (deltaAngle >= 0 ? 1 : -1) * delta;
+            toRotate = 0.5 * (deltaAngle >= 0 ? 1 : -1) * delta;
             if ((toRotate >= 0 && toRotate > deltaAngle) || (toRotate < 0 && toRotate < deltaAngle)) toRotate = deltaAngle;
             mc.player.setYaw(mc.player.getYaw() + (float) toRotate);
 
@@ -152,7 +152,7 @@ public class AimAssist {
 
 
             deltaAngle = MathHelper.wrapDegrees(angle - mc.player.getPitch());
-            toRotate = 4 * (deltaAngle >= 0 ? 1 : -1) * delta;
+            toRotate = 0.8 * (deltaAngle >= 0 ? 1 : -1) * delta;
             if ((toRotate >= 0 && toRotate > deltaAngle) || (toRotate < 0 && toRotate < deltaAngle)) toRotate = deltaAngle;
             mc.player.setPitch(mc.player.getPitch() + (float) toRotate);
 
