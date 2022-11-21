@@ -6,10 +6,12 @@ import net.fabricmc.api.EnvType;
 import net.wiphire.wUtils.event.KeyInputHandler;
 import net.minecraft.client.MinecraftClient;
 import net.wiphire.wUtils.modules.AimAssist;
+import net.wiphire.wUtils.modules.MiddleClickFriend;
 import net.wiphire.wUtils.modules.TriggerBot;
 
 @Environment(EnvType.CLIENT)
 public class wUtilsClient implements ClientModInitializer {
+
 
     public static MinecraftClient mc;
 
@@ -19,6 +21,7 @@ public class wUtilsClient implements ClientModInitializer {
         TriggerBot.register();
         AimAssist.register();
         KeyInputHandler.register();
+        //MiddleClickFriend.init();
 
     }
 }

@@ -8,23 +8,28 @@ import net.minecraft.client.util.InputUtil;
 
 
 import net.wiphire.wUtils.modules.AimAssist;
+import net.wiphire.wUtils.modules.MiddleClickFriend;
 import net.wiphire.wUtils.modules.TriggerBot;
 
 import org.lwjgl.glfw.GLFW;
 
+import java.io.FileNotFoundException;
 import java.lang.String;
+import static net.wiphire.wUtils.wUtilsClient.mc;
 
 public class KeyInputHandler {
     public static final String KEY_CATEGORY_WUTILS = "key.category.wutils";
-    public static final String KEY_CALL_FUNC = "key.wutils.aa";
-    public static final String KEY_CALL_FUNC2 = "key.wutils.tb";
-    public static final String KEY_CALL_FUNC3 = "key.wutils.ong";
+    public static final String KEY_CALL_FUNC = "key.wutils.aimassist";
+    public static final String KEY_CALL_FUNC2 = "key.wutils.triggerbot";
+    public static final String KEY_CALL_FUNC3 = "key.wutils.mobtoggle";
     public static final String KEY_CALL_FUNC4 = "key.wutils.invistoggle";
+    public static final String KEY_CALL_FUNC5 = "key.wutils.addfriend";
 
     public static KeyBinding funcKey;
     public static KeyBinding funcKey2;
     public static KeyBinding funcKey3;
     public static KeyBinding funcKey4;
+    public static KeyBinding funcKey5;
 
     public static void registerKeyInputs() {
 
@@ -47,6 +52,14 @@ public class KeyInputHandler {
             }
             if (funcKey4.wasPressed()) {
                 AimAssist.toggleInvis();
+            }
+            if (funcKey5.wasPressed()) {
+
+                try {
+                    MiddleClickFriend.addFriend();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }
@@ -76,6 +89,13 @@ public class KeyInputHandler {
                 KEY_CALL_FUNC4,
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_H,
+                KEY_CATEGORY_WUTILS
+        ));
+
+        funcKey5= KeyBindingHelper.registerKeyBinding(new KeyBinding(
+                KEY_CALL_FUNC5,
+                InputUtil.Type.KEYSYM,
+                GLFW.GLFW_KEY_B ,
                 KEY_CATEGORY_WUTILS
         ));
         registerKeyInputs();
