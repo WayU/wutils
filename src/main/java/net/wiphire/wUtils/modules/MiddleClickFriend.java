@@ -1,17 +1,16 @@
 package net.wiphire.wUtils.modules;
 
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.util.hit.EntityHitResult;
 
 
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import static net.wiphire.wUtils.wUtils.LOGGER;
+
 import static net.wiphire.wUtils.wUtilsClient.mc;
 
 public class MiddleClickFriend {
