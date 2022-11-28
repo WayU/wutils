@@ -11,6 +11,7 @@ import net.wiphire.wUtils.modules.AimAssist;
 import net.wiphire.wUtils.modules.MiddleClickFriend;
 import net.wiphire.wUtils.modules.TriggerBot;
 
+import net.wiphire.wUtils.wUtilsClient;
 import org.lwjgl.glfw.GLFW;
 
 import java.io.FileNotFoundException;
@@ -20,7 +21,7 @@ import static net.wiphire.wUtils.wUtilsClient.mc;
 public class KeyInputHandler {
     public static final String KEY_CATEGORY_WUTILS = "key.category.wutils";
     public static final String KEY_CALL_FUNC = "key.wutils.aimassist";
-    public static final String KEY_CALL_FUNC2 = "key.wutils.triggerbot";
+    public static final String KEY_CALL_FUNC2 = "key.wutils.autofish";
     public static final String KEY_CALL_FUNC3 = "key.wutils.mobtoggle";
     public static final String KEY_CALL_FUNC4 = "key.wutils.invistoggle";
     public static final String KEY_CALL_FUNC5 = "key.wutils.addfriend";
@@ -36,12 +37,12 @@ public class KeyInputHandler {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if(funcKey.wasPressed()) {
             //    wUtils.LOGGER.info("key1 worked atleast");
-                TriggerBot.toggleKey();
+                AimAssist.toggleState();
 
             }
             if (funcKey2.wasPressed()) {
             //    wUtils.LOGGER.info("key2 worked atleast");
-                AimAssist.toggleState();
+                TriggerBot.toggleKey();
 
             }
 
@@ -68,14 +69,14 @@ public class KeyInputHandler {
         funcKey= KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 KEY_CALL_FUNC,
                 InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_O,
+                GLFW.GLFW_KEY_R,
                 KEY_CATEGORY_WUTILS
         ));
 
         funcKey2= KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 KEY_CALL_FUNC2,
                 InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_R,
+                GLFW.GLFW_KEY_O,
                 KEY_CATEGORY_WUTILS
         ));
 
