@@ -6,10 +6,11 @@ Made for educational purposes :D
 Code is bad and unoptimized, but this is my first project so forgive :)
 
 - Aim Assist
-- AutoFish (Propably can't be disabled and is badly made.
+- AutoFish (Propably can't be disabled and is badly made.)
+- Triggerbot (works somehow)
 
 ### How to use
-Put in ur farbric mods folder. Keybinds are in the minecraft settings.
+Put in ur fabric mods folder. Keybinds are in the minecraft settings.
 
 ### License
 
