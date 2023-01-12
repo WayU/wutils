@@ -2,10 +2,14 @@
 
 Is a ghost mod for minecraft 1.19.2
 
-### Aim assist 
+# Features
+Code is bad and unoptimized, but this is my first project so forgive :)
 
-Yes this is unfair, but there is no way im gonna waste hours trying to become good in some block game.
-Also im very sorry
+- Aim Assist
+- AutoFish
+
+# How to use
+Put in ur farbric mods folder. Keybinds are in the minecraft settings.
 
 ### License
 
