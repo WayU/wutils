@@ -1,6 +1,6 @@
 ## wUtils
 
-Is a ghost mod for minecraft 1.19.2
+Made for educational purposes :D
 
 ### Features
 Code is bad and unoptimized, but this is my first project so forgive :)
