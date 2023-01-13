@@ -1,5 +1,5 @@
 ## wUtils
-
+Minecraft Fabric Clientside mod
 Made for educational purposes :D
 
 ### Features
